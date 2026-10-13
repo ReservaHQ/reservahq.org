@@ -74,9 +74,43 @@ a {
   padding-bottom: 4px;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 .nav-link span {
   margin-left: 8px;
   font-size: 1rem;
+}
+
+.locale-picker {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+}
+
+.locale-picker button {
+  padding: 4px 2px;
+  border: 0;
+  color: rgba(32, 58, 52, 0.48);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.locale-picker button:hover,
+.locale-picker button.active {
+  color: var(--ink);
+}
+
+.locale-picker button:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 3px;
 }
 
 .hero {
@@ -371,6 +405,10 @@ h1 em {
 
   .product-card {
     min-height: 248px;
+  }
+
+  .nav-actions {
+    gap: 14px;
   }
 
   .section-heading,
