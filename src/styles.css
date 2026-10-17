@@ -1,4 +1,6 @@
-/* ReservaHQ — Suizo Técnico. Brand artwork stays on the logo and favicon. */
+/* ReservaHQ — Suizo Técnico.
+   Suizo owns shape, type, and neutrals. Color roles follow the pre-Suizo brand.
+   Logos and favicon stay as drawn. */
 
 :root,
 html[data-theme='light'] {
@@ -11,10 +13,24 @@ html[data-theme='light'] {
   --theme-foreground: #0a0a0a;
   --theme-muted: #5e5e5e;
   --theme-border: #d4d4d4;
-  --theme-primary: #0a0a0a;
-  --theme-on-primary: #ffffff;
-  --theme-accent: #ff5a00;
-  --theme-on-accent: #0a0a0a;
+  /* Pre-Suizo primary. onColor(#62a898): #0a0a0a is 7.1:1, white is 2.8:1. */
+  --brand-teal: #62a898;
+  --brand-primary-contrast: #0a0a0a;
+  --theme-primary: var(--brand-teal);
+  --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
+  /* Teal on white is 2.8:1. Darkened until text clears 4.5:1. */
+  --theme-primary-text: #448070;
+  --theme-accent: var(--theme-primary);
+  --theme-on-accent: var(--theme-on-primary);
+  /* Pre-Suizo coral: hero emphasis and landing pulse. White on the fill is 3.1:1. */
+  --brand-coral: #dc785b;
+  --theme-accent-warm: var(--brand-coral);
+  --theme-on-accent-warm: #ffffff;
+  --theme-on-accent-warm-text: #0a0a0a;
+  /* Pre-Suizo gold. Cream #f8f3e9 is 1.1:1 on white, so the chip color is gold. */
+  --brand-gold: #e5b44a;
+  --theme-highlight: var(--brand-gold);
+  --theme-on-highlight: #0a0a0a;
   --theme-warning: #9a3412;
   --theme-danger: #e10600;
   --theme-danger-text: #e10600;
@@ -34,7 +50,7 @@ html[data-theme='light'] {
   --radius-control: 2px;
   --grid-gap-tight: 4px;
   --btn-hover-shift: translate(-2px, -2px);
-  --btn-hover-shadow: 3px 3px 0 var(--theme-text);
+  --btn-hover-shadow: 3px 3px 0 color-mix(in srgb, var(--theme-primary) 60%, black);
 
   color: var(--theme-text);
   background: var(--theme-bg);
@@ -52,13 +68,22 @@ html[data-theme='dark'] {
   --theme-foreground: #f5f5f5;
   --theme-muted: #9a9a9a;
   --theme-border: #2e2e2e;
-  --theme-primary: #f5f5f5;
-  --theme-on-primary: #0a0a0a;
-  --theme-accent: #ff7a1a;
-  --theme-on-accent: #0a0a0a;
+  /* Teal is already 6.8:1 on #111111, so the dark fill stays the brand primary. */
+  --brand-primary-contrast: #0a0a0a;
+  --theme-primary: var(--brand-teal);
+  --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
+  --theme-primary-text: var(--brand-teal);
+  --theme-accent: var(--theme-primary);
+  --theme-on-accent: var(--theme-on-primary);
+  --theme-accent-warm: var(--brand-coral);
+  --theme-on-accent-warm: #ffffff;
+  --theme-on-accent-warm-text: #0a0a0a;
+  --theme-highlight: var(--brand-gold);
+  --theme-on-highlight: #0a0a0a;
   --theme-warning: #f5c16c;
   --theme-danger: #d70015;
   --theme-danger-text: #ff3b30;
+  --btn-hover-shadow: 3px 3px 0 color-mix(in srgb, var(--theme-primary) 72%, white);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -72,13 +97,21 @@ html[data-theme='dark'] {
     --theme-foreground: #f5f5f5;
     --theme-muted: #9a9a9a;
     --theme-border: #2e2e2e;
-    --theme-primary: #f5f5f5;
-    --theme-on-primary: #0a0a0a;
-    --theme-accent: #ff7a1a;
-    --theme-on-accent: #0a0a0a;
+    --brand-primary-contrast: #0a0a0a;
+    --theme-primary: var(--brand-teal);
+    --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
+    --theme-primary-text: var(--brand-teal);
+    --theme-accent: var(--theme-primary);
+    --theme-on-accent: var(--theme-on-primary);
+    --theme-accent-warm: var(--brand-coral);
+    --theme-on-accent-warm: #ffffff;
+    --theme-on-accent-warm-text: #0a0a0a;
+    --theme-highlight: var(--brand-gold);
+    --theme-on-highlight: #0a0a0a;
     --theme-warning: #f5c16c;
     --theme-danger: #d70015;
     --theme-danger-text: #ff3b30;
+    --btn-hover-shadow: 3px 3px 0 color-mix(in srgb, var(--theme-primary) 72%, white);
   }
 }
 
@@ -167,7 +200,7 @@ a {
 .hero-link {
   background: var(--theme-primary);
   border-color: var(--theme-primary);
-  color: var(--theme-on-primary);
+  color: var(--theme-on-primary, var(--brand-primary-contrast, #0a0a0a));
 }
 
 .nav-link:hover,
@@ -189,7 +222,7 @@ a {
 .locale-picker button:focus-visible,
 .product-card:focus-visible,
 .footer a:focus-visible {
-  outline: 2px solid var(--theme-accent);
+  outline: 2px solid var(--theme-primary);
   outline-offset: 2px;
 }
 
@@ -208,7 +241,7 @@ a {
 .locale-picker button.active {
   background: var(--theme-primary);
   border-color: var(--theme-primary);
-  color: var(--theme-on-primary);
+  color: var(--theme-on-primary, var(--brand-primary-contrast, #0a0a0a));
 }
 
 .hero {
@@ -237,7 +270,7 @@ a {
   width: 8px;
   height: 8px;
   border-radius: 0;
-  background: var(--theme-accent);
+  background: var(--theme-accent-warm);
   box-shadow: none;
 }
 
@@ -260,7 +293,7 @@ h1 {
 
 h1 em {
   display: block;
-  color: var(--theme-accent);
+  color: var(--theme-accent-warm);
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: 600;
@@ -451,7 +484,7 @@ h1 em {
 }
 
 .footer a {
-  color: var(--theme-text);
+  color: var(--theme-primary-text, var(--theme-primary));
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 500;
