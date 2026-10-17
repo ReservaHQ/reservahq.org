@@ -18,6 +18,8 @@ html[data-theme='light'] {
   --brand-primary-contrast: #0a0a0a;
   --theme-primary: var(--brand-teal);
   --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
+  /* Teal on white is 2.8:1. Darkened until text clears 4.5:1. */
+  --theme-primary-text: #448070;
   --theme-accent: var(--theme-primary);
   --theme-on-accent: var(--theme-on-primary);
   /* Pre-Suizo coral: hero emphasis and landing pulse. White on the fill is 3.1:1. */
@@ -70,6 +72,7 @@ html[data-theme='dark'] {
   --brand-primary-contrast: #0a0a0a;
   --theme-primary: var(--brand-teal);
   --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
+  --theme-primary-text: var(--brand-teal);
   --theme-accent: var(--theme-primary);
   --theme-on-accent: var(--theme-on-primary);
   --theme-accent-warm: var(--brand-coral);
@@ -97,6 +100,7 @@ html[data-theme='dark'] {
     --brand-primary-contrast: #0a0a0a;
     --theme-primary: var(--brand-teal);
     --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
+    --theme-primary-text: var(--brand-teal);
     --theme-accent: var(--theme-primary);
     --theme-on-accent: var(--theme-on-primary);
     --theme-accent-warm: var(--brand-coral);
@@ -480,7 +484,7 @@ h1 em {
 }
 
 .footer a {
-  color: var(--theme-text);
+  color: var(--theme-primary-text, var(--theme-primary));
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 500;
