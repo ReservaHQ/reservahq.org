@@ -39,7 +39,7 @@ html[data-theme='light'] {
   --radius-control: 2px;
   --grid-gap-tight: 4px;
   --btn-hover-shift: translate(-2px, -2px);
-  --btn-hover-shadow: 3px 3px 0 var(--theme-text);
+  --btn-hover-shadow: 3px 3px 0 color-mix(in srgb, var(--theme-primary) 60%, black);
 
   color: var(--theme-text);
   background: var(--theme-bg);
@@ -66,6 +66,7 @@ html[data-theme='dark'] {
   --theme-warning: #f5c16c;
   --theme-danger: #d70015;
   --theme-danger-text: #ff3b30;
+  --btn-hover-shadow: 3px 3px 0 color-mix(in srgb, var(--theme-primary) 72%, white);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -87,6 +88,7 @@ html[data-theme='dark'] {
     --theme-warning: #f5c16c;
     --theme-danger: #d70015;
     --theme-danger-text: #ff3b30;
+    --btn-hover-shadow: 3px 3px 0 color-mix(in srgb, var(--theme-primary) 72%, white);
   }
 }
 
