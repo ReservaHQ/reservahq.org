@@ -1,4 +1,6 @@
-/* ReservaHQ — Suizo Técnico. Brand artwork stays on the logo and favicon. */
+/* ReservaHQ — Suizo Técnico.
+   Suizo owns shape, type, and neutrals. Color roles follow the pre-Suizo brand.
+   Logos and favicon stay as drawn. */
 
 :root,
 html[data-theme='light'] {
@@ -11,8 +13,11 @@ html[data-theme='light'] {
   --theme-foreground: #0a0a0a;
   --theme-muted: #5e5e5e;
   --theme-border: #d4d4d4;
-  --theme-primary: #0a0a0a;
-  --theme-on-primary: #ffffff;
+  /* Pre-Suizo primary. onColor(#62a898): #0a0a0a is 7.1:1, white is 2.8:1. */
+  --brand-teal: #62a898;
+  --brand-primary-contrast: #0a0a0a;
+  --theme-primary: var(--brand-teal);
+  --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
   --theme-accent: #ff5a00;
   --theme-on-accent: #0a0a0a;
   --theme-warning: #9a3412;
@@ -52,8 +57,10 @@ html[data-theme='dark'] {
   --theme-foreground: #f5f5f5;
   --theme-muted: #9a9a9a;
   --theme-border: #2e2e2e;
-  --theme-primary: #f5f5f5;
-  --theme-on-primary: #0a0a0a;
+  /* Teal is already 6.8:1 on #111111, so the dark fill stays the brand primary. */
+  --brand-primary-contrast: #0a0a0a;
+  --theme-primary: var(--brand-teal);
+  --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
   --theme-accent: #ff7a1a;
   --theme-on-accent: #0a0a0a;
   --theme-warning: #f5c16c;
@@ -72,8 +79,9 @@ html[data-theme='dark'] {
     --theme-foreground: #f5f5f5;
     --theme-muted: #9a9a9a;
     --theme-border: #2e2e2e;
-    --theme-primary: #f5f5f5;
-    --theme-on-primary: #0a0a0a;
+    --brand-primary-contrast: #0a0a0a;
+    --theme-primary: var(--brand-teal);
+    --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
     --theme-accent: #ff7a1a;
     --theme-on-accent: #0a0a0a;
     --theme-warning: #f5c16c;
@@ -167,7 +175,7 @@ a {
 .hero-link {
   background: var(--theme-primary);
   border-color: var(--theme-primary);
-  color: var(--theme-on-primary);
+  color: var(--theme-on-primary, var(--brand-primary-contrast, #0a0a0a));
 }
 
 .nav-link:hover,
@@ -208,7 +216,7 @@ a {
 .locale-picker button.active {
   background: var(--theme-primary);
   border-color: var(--theme-primary);
-  color: var(--theme-on-primary);
+  color: var(--theme-on-primary, var(--brand-primary-contrast, #0a0a0a));
 }
 
 .hero {
