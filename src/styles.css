@@ -18,8 +18,17 @@ html[data-theme='light'] {
   --brand-primary-contrast: #0a0a0a;
   --theme-primary: var(--brand-teal);
   --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
-  --theme-accent: #ff5a00;
-  --theme-on-accent: #0a0a0a;
+  --theme-accent: var(--theme-primary);
+  --theme-on-accent: var(--theme-on-primary);
+  /* Pre-Suizo coral: hero emphasis and landing pulse. White on the fill is 3.1:1. */
+  --brand-coral: #dc785b;
+  --theme-accent-warm: var(--brand-coral);
+  --theme-on-accent-warm: #ffffff;
+  --theme-on-accent-warm-text: #0a0a0a;
+  /* Pre-Suizo gold. Cream #f8f3e9 is 1.1:1 on white, so the chip color is gold. */
+  --brand-gold: #e5b44a;
+  --theme-highlight: var(--brand-gold);
+  --theme-on-highlight: #0a0a0a;
   --theme-warning: #9a3412;
   --theme-danger: #e10600;
   --theme-danger-text: #e10600;
@@ -61,8 +70,13 @@ html[data-theme='dark'] {
   --brand-primary-contrast: #0a0a0a;
   --theme-primary: var(--brand-teal);
   --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
-  --theme-accent: #ff7a1a;
-  --theme-on-accent: #0a0a0a;
+  --theme-accent: var(--theme-primary);
+  --theme-on-accent: var(--theme-on-primary);
+  --theme-accent-warm: var(--brand-coral);
+  --theme-on-accent-warm: #ffffff;
+  --theme-on-accent-warm-text: #0a0a0a;
+  --theme-highlight: var(--brand-gold);
+  --theme-on-highlight: #0a0a0a;
   --theme-warning: #f5c16c;
   --theme-danger: #d70015;
   --theme-danger-text: #ff3b30;
@@ -83,8 +97,13 @@ html[data-theme='dark'] {
     --brand-primary-contrast: #0a0a0a;
     --theme-primary: var(--brand-teal);
     --theme-on-primary: var(--brand-primary-contrast, #0a0a0a);
-    --theme-accent: #ff7a1a;
-    --theme-on-accent: #0a0a0a;
+    --theme-accent: var(--theme-primary);
+    --theme-on-accent: var(--theme-on-primary);
+    --theme-accent-warm: var(--brand-coral);
+    --theme-on-accent-warm: #ffffff;
+    --theme-on-accent-warm-text: #0a0a0a;
+    --theme-highlight: var(--brand-gold);
+    --theme-on-highlight: #0a0a0a;
     --theme-warning: #f5c16c;
     --theme-danger: #d70015;
     --theme-danger-text: #ff3b30;
@@ -199,7 +218,7 @@ a {
 .locale-picker button:focus-visible,
 .product-card:focus-visible,
 .footer a:focus-visible {
-  outline: 2px solid var(--theme-accent);
+  outline: 2px solid var(--theme-primary);
   outline-offset: 2px;
 }
 
@@ -247,7 +266,7 @@ a {
   width: 8px;
   height: 8px;
   border-radius: 0;
-  background: var(--theme-accent);
+  background: var(--theme-accent-warm);
   box-shadow: none;
 }
 
@@ -270,7 +289,7 @@ h1 {
 
 h1 em {
   display: block;
-  color: var(--theme-accent);
+  color: var(--theme-accent-warm);
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: 600;
