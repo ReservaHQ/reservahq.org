@@ -115,6 +115,10 @@ const copy: Record<Locale, LocaleCopy> = {
   },
 }
 
+function btn(variant: 'primary' | 'ghost', extra = '') {
+  return ['btn', `btn-${variant}`, extra].filter(Boolean).join(' ')
+}
+
 function getInitialLocale(): Locale {
   if (typeof window !== 'undefined') {
     const saved = window.localStorage.getItem('reservahq-locale')
@@ -159,15 +163,15 @@ function App() {
           <img src="/reservahq-lockup.png" alt="ReservaHQ" />
         </a>
         <div class="nav-actions">
-          <a class="nav-link" href="#productos">
+          <a class={btn('ghost')} href="#productos">
             {t().viewProducts} <span aria-hidden="true">↘</span>
           </a>
           <div class="locale-picker" aria-label={t().languageLabel} role="group">
-            <button class={locale() === 'es' ? 'active' : ''} type="button" onClick={() => changeLocale('es')}>
+            <button class={btn(locale() === 'es' ? 'primary' : 'ghost', 'btn-sm')} type="button" onClick={() => changeLocale('es')}>
               ES
             </button>
             <span aria-hidden="true">/</span>
-            <button class={locale() === 'en' ? 'active' : ''} type="button" onClick={() => changeLocale('en')}>
+            <button class={btn(locale() === 'en' ? 'primary' : 'ghost', 'btn-sm')} type="button" onClick={() => changeLocale('en')}>
               EN
             </button>
           </div>
@@ -183,7 +187,7 @@ function App() {
             {t().titleAfter}
           </h1>
           <p class="intro">{t().intro}</p>
-          <a class="hero-link" href="#productos">
+          <a class={btn('primary')} href="#productos">
             {t().ecosystemCta} <span aria-hidden="true">↓</span>
           </a>
         </div>
@@ -222,7 +226,9 @@ function App() {
                   <h2>{product.name}</h2>
                   <p>{product.description[locale()]}</p>
                 </div>
-                <span class="card-arrow" aria-hidden="true">↗</span>
+                <span class={`${btn('primary')} card-cta`} aria-hidden="true">
+                  {t().visit} <span>↗</span>
+                </span>
               </a>
             )}
           </For>
