@@ -74,6 +74,9 @@ type LocaleCopy = {
   visit: string
   footer: string
   languageLabel: string
+  themeLabel: string
+  themeLight: string
+  themeDark: string
 }
 
 const copy: Record<Locale, LocaleCopy> = {
@@ -94,6 +97,9 @@ const copy: Record<Locale, LocaleCopy> = {
     visit: 'Visitar',
     footer: 'Ideas que encuentran su lugar.',
     languageLabel: 'Idioma',
+    themeLabel: 'Tema',
+    themeLight: 'Modo claro',
+    themeDark: 'Modo oscuro',
   },
   en: {
     navLabel: 'Main navigation',
@@ -112,7 +118,25 @@ const copy: Record<Locale, LocaleCopy> = {
     visit: 'Visit',
     footer: 'Ideas finding their place.',
     languageLabel: 'Language',
+    themeLabel: 'Theme',
+    themeLight: 'Light mode',
+    themeDark: 'Dark mode',
   },
+}
+
+type Theme = 'light' | 'dark'
+
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'light'
+  const saved = window.localStorage.getItem('reservahq-theme')
+  if (saved === 'light' || saved === 'dark') return saved
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+
+function applyTheme(theme: Theme) {
+  document.documentElement.setAttribute('data-theme', theme)
+  const themeColor = theme === 'dark' ? '#0a0a0a' : '#ffffff'
+  document.querySelector('meta[name="theme-color"]:not([media])')?.setAttribute('content', themeColor)
 }
 
 function btn(variant: 'primary' | 'ghost', extra = '') {
@@ -130,11 +154,20 @@ function getInitialLocale(): Locale {
 
 function App() {
   const initialLocale = getInitialLocale()
+  const initialTheme = getInitialTheme()
   const [locale, setLocale] = createSignal<Locale>(initialLocale)
+  const [theme, setTheme] = createSignal<Theme>(initialTheme)
   const t = () => copy[locale()]
 
   if (typeof document !== 'undefined') {
     document.documentElement.lang = initialLocale
+    applyTheme(initialTheme)
+  }
+
+  const changeTheme = (nextTheme: Theme) => {
+    setTheme(nextTheme)
+    window.localStorage.setItem('reservahq-theme', nextTheme)
+    applyTheme(nextTheme)
   }
 
   const changeLocale = (nextLocale: Locale) => {
@@ -166,7 +199,29 @@ function App() {
           <a class={btn('ghost')} href="#productos">
             {t().viewProducts} <span aria-hidden="true">↘</span>
           </a>
-          <div class="locale-picker" aria-label={t().languageLabel} role="group">
+          <div class="nav-pickers">
+            <div class="locale-picker" aria-label={t().themeLabel} role="group">
+              <button
+                class={btn(theme() === 'light' ? 'primary' : 'ghost', 'btn-sm')}
+                type="button"
+                aria-label={t().themeLight}
+                aria-pressed={theme() === 'light'}
+                onClick={() => changeTheme('light')}
+              >
+                ☀
+              </button>
+              <span aria-hidden="true">/</span>
+              <button
+                class={btn(theme() === 'dark' ? 'primary' : 'ghost', 'btn-sm')}
+                type="button"
+                aria-label={t().themeDark}
+                aria-pressed={theme() === 'dark'}
+                onClick={() => changeTheme('dark')}
+              >
+                ☾
+              </button>
+            </div>
+            <div class="locale-picker" aria-label={t().languageLabel} role="group">
             <button class={btn(locale() === 'es' ? 'primary' : 'ghost', 'btn-sm')} type="button" onClick={() => changeLocale('es')}>
               ES
             </button>
@@ -174,6 +229,7 @@ function App() {
             <button class={btn(locale() === 'en' ? 'primary' : 'ghost', 'btn-sm')} type="button" onClick={() => changeLocale('en')}>
               EN
             </button>
+            </div>
           </div>
         </div>
       </nav>
