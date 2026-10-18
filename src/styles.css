@@ -260,6 +260,12 @@ a {
   outline-offset: 2px;
 }
 
+.nav-pickers {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .locale-picker {
   display: flex;
   align-items: center;
