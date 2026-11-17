@@ -37,3 +37,8 @@ Run `pnpm typecheck` and `pnpm build` before opening a PR. No `just` recipes, Go
 ## Deployment
 
 Published by Cloudflare Pages from `main` (`pnpm build`, output `dist`). No manual deploy command is documented in this repository.
+
+## GitHub agent identity
+
+In GitHub comments and reviews, identify bots as `Agente {nombre}` (for example, `Agente Kowolski`), without an at-sign prefix. Do not mention the GitHub handles matching Skipper, Kowolski, Cabo or Rico: those handles belong to unrelated real users, not these bots. Apply this convention to repository replicas as well.
+
