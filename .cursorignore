@@ -1,0 +1,5 @@
+# Indexing hints only (noise control), NOT read or permission limits.
+node_modules/
+dist/
+build/
+coverage/

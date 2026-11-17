@@ -1,0 +1,78 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "AGENTS.md",
+    "AGENTS.agents.md"
+  ],
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "coverage/**",
+      ".worktrees/**"
+    ]
+  },
+  "permissions": [
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm typecheck",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm build",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm dev",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm preview",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm install",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git status *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git push *",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.env",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.env.*",
+      "effect": "deny"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+---
+description: AGENTS.md + AGENTS.agents.md are the sources of truth (static site); no implicit deploys
+globs:
+alwaysApply: true
+---
+
+# Agent context & safety
+
+Read `@AGENTS.md` and `@AGENTS.agents.md`. This is a static SolidJS/Vite site, not a Go modulith.
+
+- No bulk reads of node_modules/ or dist/; targeted diagnosis reads are allowed.
+- Indexing ignore lists are noise control only, not read limits.
+- Cloudflare Pages deploys are human-managed; no implicit deployment authority.
+- Never merge to main unless a human explicitly asks.
