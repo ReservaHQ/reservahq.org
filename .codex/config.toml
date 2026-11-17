@@ -1,0 +1,9 @@
+# Configuración compartida de proyecto para Codex CLI (reservahq.org)
+# Codex cargará este archivo automáticamente una vez que marques el repositorio como "trusted".
+
+# Escritura solo dentro del workspace activo; sin red por defecto.
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+
+# Límite combinado de bytes de documentos de proyecto (evita desbordamientos de contexto).
+project_doc_max_bytes = 65536

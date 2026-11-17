@@ -1,0 +1,7 @@
+# Access exclusions for build output and dependencies (not just indexing).
+dist/
+node_modules/
+coverage/
+
+# Seeds, generated code and mocks are intentionally NOT listed here: Cursor blocks
+# agent reads for ignored paths, which would defeat the diagnose-by-opening rule in AGENTS.md.

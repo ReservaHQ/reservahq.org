@@ -1,0 +1,12 @@
+# Reduce indexing noise while retaining targeted file access.
+**/db/seed/**
+internal/graphql/generated/generated.go
+**/*_mock.go
+**/*.pb.go
+vendor/
+bin/
+dist/
+build/
+node_modules/
+.worktrees/
+coverage/

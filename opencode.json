@@ -1,0 +1,17 @@
+{
+  "instructions": [
+    "AGENTS.md"
+  ],
+  "watcher": {
+    "ignore": [
+      "dist/**",
+      "node_modules/**",
+      "coverage/**"
+    ]
+  },
+  "permission": {
+    "bash": {
+      "*": "ask"
+    }
+  }
+}
