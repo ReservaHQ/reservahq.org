@@ -2,5 +2,4 @@
 # Codex CLI project config for the static reservahq.org site (no Go/just toolchain).
 sandbox_mode = "workspace-write"
 approval_policy = "on-request"
-project_doc_fallback_filenames = ["AGENTS.md"]
 project_doc_max_bytes = 65536

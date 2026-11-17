@@ -1,0 +1,23 @@
+# Prefix rules are command matching hints, not an authorization or sandbox boundary.
+# Package-manager dispatchers can run arbitrary scripts; keep them out of allow rules.
+prefix_rule(
+    pattern = ["pnpm"],
+    decision = "prompt",
+    justification = "Review the command before execution; scripts may publish or deploy.",
+    match = ["pnpm deploy", "pnpm publish"],
+)
+
+prefix_rule(
+    pattern = ["git", ["status", "diff", "log", "show"]],
+    decision = "allow",
+    justification = "Routine Git inspection; review flags that invoke external helpers.",
+    match = ["git status --short", "git diff --stat", "git log -1", "git show --stat HEAD"],
+    not_match = ["git branch -D feature", "git worktree remove .worktrees/task", "git push origin main"],
+)
+
+prefix_rule(
+    pattern = ["git", ["push", "reset", "clean", "branch", "worktree", "merge", "rebase"]],
+    decision = "prompt",
+    justification = "These subcommands can mutate or remove local or remote work.",
+    match = ["git branch -D feature", "git worktree remove .worktrees/task", "git push origin main", "git reset --hard", "git clean -fd"],
+)
