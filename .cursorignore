@@ -1,5 +1,3 @@
-# Indexing hints only (noise control), NOT read or permission limits.
-node_modules/
-dist/
-build/
-coverage/
+# Access exclusions; indexing-only noise belongs in .cursorindexingignore.
+!.env.docker.example
+!.env.example
