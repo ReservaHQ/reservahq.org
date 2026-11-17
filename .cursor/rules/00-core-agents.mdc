@@ -1,0 +1,15 @@
+---
+description: Core repository architecture, context hygiene, and workflow rules
+globs:
+alwaysApply: true
+---
+
+# Core Project Rules
+
+Strictly read and follow `@AGENTS.md` for the workflow and verification commands.
+
+## Critical context & token hygiene
+- Static SolidJS + Vite site; no Go module, `just` recipes, seeds or CI runner exist here.
+- Avoid reading `dist/**` and `node_modules/**` unless diagnosing a failure.
+- Verify with `pnpm typecheck` and `pnpm build` before a PR.
+- No merge to `main` or production change without explicit authorization from Christian.

@@ -1,0 +1,4 @@
+# Build output and dependencies (indexing only)
+dist/
+node_modules/
+coverage/

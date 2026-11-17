@@ -1,0 +1,37 @@
+# Reglas de ejecución de comandos para Codex CLI en reservahq.org
+# Sitio estático: no hay justfile, módulo Go ni CI runner. Solo recetas pnpm reales.
+
+prefix_rule(
+    pattern = ["pnpm", ["install", "dev", "typecheck", "build", "preview"]],
+    decision = "allow",
+    justification = "Comandos estándar de desarrollo y verificación del sitio.",
+)
+
+# Inspección de Git: `branch` NO va en allow (git branch -d/-D borra ramas).
+prefix_rule(
+    pattern = ["git", ["status", "diff", "log", "show"]],
+    decision = "allow",
+    justification = "Inspección de estado, cambios e historial del repositorio.",
+    match = ["git status", "git status --short", "git diff HEAD", "git log -1", "git show HEAD"],
+    not_match = ["git branch -d feature/old", "git push origin main"],
+)
+
+# Confirmación antes de push, reset, clean, merge o rebase.
+prefix_rule(
+    pattern = ["git", ["push", "reset", "clean", "merge", "rebase"]],
+    decision = "prompt",
+    justification = "Operaciones remotas o que reescriben el historial requieren confirmación manual.",
+)
+
+# Confirmación antes de borrar ramas (F-07) y worktrees (F-08).
+prefix_rule(
+    pattern = ["git", "branch", ["-d", "-D", "--delete"]],
+    decision = "prompt",
+    justification = "Borrar ramas es destructivo y requiere confirmación manual.",
+)
+prefix_rule(
+    pattern = ["git", "worktree", ["remove", "prune"]],
+    decision = "prompt",
+    justification = "Borrar worktrees es destructivo y requiere confirmación manual.",
+)
+# Sin comandos de despliegue: Cloudflare Pages publica desde main.
