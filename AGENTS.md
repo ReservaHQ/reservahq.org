@@ -12,7 +12,7 @@ There is no generated code, seed data or Go module here. Avoid reading `dist/`, 
 
 ## Agent tooling compatibility
 
-- `opencode.json` uses the OpenCode **V1** config format, validated by real load of OpenCode 1.19.6 (`debug config --pure`, exit 0). Commands are the repo`s own pnpm scripts; no `just` or Go toolchain.
+- `opencode.json` uses the OpenCode **V1** config format, validated by real load of OpenCode 1.19.6 (`debug config --pure`, exit 0). Commands are the repo's own pnpm scripts; no `just` or Go toolchain.
 - Codex loads `.codex/` only after the project is trusted; project-local rules need that trust.
 
 ## Collaboration workflow
